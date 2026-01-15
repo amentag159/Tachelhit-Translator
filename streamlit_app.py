@@ -5,7 +5,7 @@ import google.generativeai as genai
 genai.configure(api_key="AIzaSyBIAt3tQkwqc4E_ySplkqXbSINeGInRHBs")
 
 # هنا كان المشكل! دابا درنا السمية اللي بانت لينا في التيست
-model = genai.GenerativeModel('gemini-2.5-flash')
+model = genai.GenerativeModel('gemini-2.0-flash')
 
 st.set_page_config(page_title="Amssuɣl Aclḥi", page_icon="ⴰ")
 st.title("Amssuɣl Aclḥi")
