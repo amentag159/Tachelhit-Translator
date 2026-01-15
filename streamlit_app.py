@@ -1,32 +1,31 @@
 import streamlit as st
 import google.generativeai as genai
 
-# إعداد الساروت ديالك
-genai.configure(api_key="AIzaSyBIAt3tQkwqc4E_ySplkqXbSINeGInRHBs") 
+# إعداد الساروت
+genai.configure(api_key="AIzaSyBIAt3tQkwqc4E_ySplkqXbSINeGInRHBs")
 
-# بدلنا الموديل هنا باش يخدم ليك
-model = genai.GenerativeModel('gemini-pro')
+# رجعنا للموديل السريع والجديد (ضروري لهاد الوقت)
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 st.set_page_config(page_title="Amssuɣl Aclḥi", page_icon="ⴰ")
 st.title("Amssuɣl Aclḥi")
-st.write("Amssuɣl n Tclḥit")
+st.subheader("ⴰⵎⵙⵙⵓⵖⵍ ⵏ ⵜⵛⵍⵃⵉⵜ")
 
-text = st.text_area("Write in English:", placeholder="e.g. Traditional music of Souss...")
+text = st.text_area("Write in English / ⴰⵔⴰ ⵙ ⵜⵏⴳⵍⵉⵣⵜ:", placeholder="Hello world...")
 
-if st.button("Translate to Tachelhit"):
+if st.button("Translate / ⵙⵙⵓⵖⵍ"):
     if text:
         with st.spinner('Translating...'):
             try:
-                # هاد الـ Prompt هو اللي كيضمن ستيل ويكيبيديا
                 prompt = (
                     f"Translate the following English text to Standard Tachelhit. "
                     f"Use the formal tone and vocabulary found in Tachelhit Wikipedia (2024-2025). "
-                    f"Result in Tifinagh: {text}"
+                    f"Output only the Tifinagh script translation: {text}"
                 )
                 response = model.generate_content(prompt)
-                st.success("Result:")
-                st.write(response.text)
+                st.success("Result / ⵜⴰⵢⴰⴼⵓⵜ:")
+                st.markdown(f"### {response.text}")
             except Exception as e:
                 st.error(f"Error: {e}")
     else:
-        st.warning("Please enter text first.")
+        st.warning("Please write something first.")
